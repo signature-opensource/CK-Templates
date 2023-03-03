@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>1.0</PackageVersion>
     <PackageId>CK.Templates</PackageId>
     <Title>CK Templates</Title>
     <Authors>Signature Code</Authors>
