@@ -3,10 +3,10 @@
   <PropertyGroup>
     <PackageType>Template</PackageType>
     <PackageVersion>1.0</PackageVersion>
-    <PackageId>CK.DB.Templates</PackageId>
-    <Title>CK DB Templates</Title>
+    <PackageId>CK.Templates</PackageId>
+    <Title>CK Templates</Title>
     <Authors>Signature Code</Authors>
-    <Description>Templates to use when creating a CK DB package.</Description>
+    <Description>Templates to use when creating a CK package.</Description>
     <PackageTags>dotnet-new;templates;signature-code</PackageTags>
 
     <TargetFramework>netstandard2.0</TargetFramework>
