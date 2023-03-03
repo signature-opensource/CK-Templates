@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCakeBuilder", "CodeCakeBuilder\CodeCakeBuilder.csproj", "{843A2913-B1F6-4D14-9BC2-D5C140959DC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplatePack", "TemplatePack\TemplatePack.csproj", "{4CA6180C-A461-45C8-9DA7-57C04725993F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CK.Templates", "CK.Templates\CK.Templates.csproj", "{4CA6180C-A461-45C8-9DA7-57C04725993F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DD05F7E0-4D13-468F-8291-1FC35763DEC1}"
 	ProjectSection(SolutionItems) = preProject
