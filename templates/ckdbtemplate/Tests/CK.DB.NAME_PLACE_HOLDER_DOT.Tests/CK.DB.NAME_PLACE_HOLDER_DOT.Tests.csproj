@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Description>This package contains tests for CK.DB.NAME_PLACE_HOLDER_DOT (uses CK.DB.Tests.NUnit).</Description>
+    <IsPackable>True</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CK.DB.NAME_PLACE_HOLDER_DOT\CK.DB.NAME_PLACE_HOLDER_DOT.csproj" />
+    <PackageReference Include="CK.DB.Tests.NUnit" Version="22.0.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
+  </ItemGroup>
+</Project>
