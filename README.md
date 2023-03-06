@@ -6,9 +6,20 @@
 
 Install the templates:
 
+Check your dotnet version first `dotnet --version`
+
+> Version 7+
+
 ```powershell
  dotnet new install ck.templates --nuget-source 'https://pkgs.dev.azure.com/Signature-OpenSource/Feeds/_packaging/NetCore3/nuget/v3/index.json'
 ```
+
+> Under version 7
+
+```powershell
+dotnet new --install ck.templates --nuget-source 'https://pkgs.dev.azure.com/Signature-OpenSource/Feeds/_packaging/NetCore4/nuget/v4/index.json'
+```
+
 
 Create a new CK.DB solution:
 
