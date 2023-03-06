@@ -2,9 +2,9 @@ using CK.SqlServer;
 using NUnit.Framework;
 using CK.Core;
 using static CK.Testing.DBSetupTestHelper;
-using Microsoft.Data.SqlClient;
-using System.Data;
 using System.Diagnostics;
+using Dapper;
+using CK.SqlServer;
 
 namespace CK.DB.NAME_PLACE_HOLDER_DOT.Tests;
 
@@ -18,25 +18,18 @@ public class CrudTests
         using var context = new SqlStandardCallContext();
         var actorId = 1;
 
-        using( var cmd = new SqlCommand( "delete from CK.tNAME_PLACE_HOLDER_CAMELCASE;" ) )
-        {
-            context[package].ExecuteNonQuery( cmd );
-        }
+        context[package].Execute( "delete from CK.tNAME_PLACE_HOLDER_CAMELCASE" );
 
         var inputName = "Hello world!";
         package.NAME_PLACE_HOLDER_CAMELCASETable.Create( context, actorId, inputName );
 
-        int id;
-        var cmdText = @"
+        var sql = @"
 select top 1 NAME_PLACE_HOLDER_CAMELCASEId
 from CK.tNAME_PLACE_HOLDER_CAMELCASE
 where NAME_PLACE_HOLDER_CAMELCASEName = @Name;
 ";
-        using( var cmd = new SqlCommand( cmdText ) )
-        {
-            cmd.Parameters.Add( "@Name", SqlDbType.NChar ).Value = inputName;
-            id = context[package].ExecuteSingleRow( cmd, r => r.GetInt32( 0 ) );
-        }
+
+        var id = context[package].QuerySingle<int>( sql, new { Name = inputName } );
 
         package.NAME_PLACE_HOLDER_CAMELCASETable.Destroy( context, actorId, id );
     }

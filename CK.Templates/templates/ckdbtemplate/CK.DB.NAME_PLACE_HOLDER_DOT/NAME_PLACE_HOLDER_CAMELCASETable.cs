@@ -9,7 +9,7 @@ namespace CK.DB.NAME_PLACE_HOLDER_DOT;
 /// </summary>
 [SqlTable( "tNAME_PLACE_HOLDER_CAMELCASE", Package = typeof( Package ) )]
 [Versions( "1.0.0" )]
-public abstract partial class NAME_PLACE_HOLDER_CAMELCASETable : SqlTable
+public abstract class NAME_PLACE_HOLDER_CAMELCASETable : SqlTable
 {
     /// <summary>
     /// Destroys a NAME_PLACE_HOLDER_CAMELCASE by its identifier (does nothing if the NAME_PLACE_HOLDER_CAMELCASE does not exist).
