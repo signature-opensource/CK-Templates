@@ -1,19 +1,21 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCakeBuilder", "CodeCakeBuilder\CodeCakeBuilder.csproj", "{843A2913-B1F6-4D14-9BC2-D5C140959DC7}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeCakeBuilder", "CodeCakeBuilder\CodeCakeBuilder.csproj", "{843A2913-B1F6-4D14-9BC2-D5C140959DC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CK.Templates", "CK.Templates/CK.Templates.csproj", "{4CA6180C-A461-45C8-9DA7-57C04725993F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CK.Templates", "CK.Templates\CK.Templates.csproj", "{4CA6180C-A461-45C8-9DA7-57C04725993F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DD05F7E0-4D13-468F-8291-1FC35763DEC1}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
+		appveyor.yml = appveyor.yml
 		Directory.Build.props = Directory.Build.props
-		global.json = global.json
+		LICENSE = LICENSE
+		NuGet.config = NuGet.config
 		README.md = README.md
 		RepositoryInfo.xml = RepositoryInfo.xml
-		appveyor.yml = appveyor.yml
-		LICENSE = LICENSE
 	EndProjectSection
 EndProject
 Global
@@ -31,6 +33,10 @@ Global
 		{4CA6180C-A461-45C8-9DA7-57C04725993F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CA6180C-A461-45C8-9DA7-57C04725993F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6E5B4F29-DB86-49D2-B4B5-19B3FD5F3290}
 	EndGlobalSection
 EndGlobal

@@ -1,6 +1,6 @@
 version: build{build}
 image: Visual Studio 2022
-clone_folder: C:\projects\CK-Templates
+clone_folder: C:\CKli-World\CK-Sample\CK-Templates
 services: mssql2017
 branches:
   only:
