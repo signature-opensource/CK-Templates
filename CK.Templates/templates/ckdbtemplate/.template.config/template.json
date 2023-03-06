@@ -87,34 +87,6 @@
       ],
       "continueOnError": false,
       "description ": "Run git init."
-    },
-    {
-      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-      "args": {
-        "executable": "git",
-        "args": "add *"
-      },
-      "manualInstructions": [
-        {
-          "text": "Run git add."
-        }
-      ],
-      "continueOnError": true,
-      "description ": "Run git add."
-    },
-    {
-      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
-      "args": {
-        "executable": "git",
-        "args": "commit -m \"First commit.\""
-      },
-      "manualInstructions": [
-        {
-          "text": "Run git commit."
-        }
-      ],
-      "continueOnError": true,
-      "description ": "Run git commit."
     }
   ],
   "sources": [
