@@ -47,9 +47,9 @@ Add new templates in [templates](./templates) folder.
 
 In folder [`ckdbtemplate`](./templates/ckdbtemplate).
 
-Usage : `dotnet new ckdb`
-Usage : `dotnet new ckdb -o CK-DB-MyProject`
-Usage : `dotnet new ckdb -o MyProject`
+- Usage : `dotnet new ckdb`
+- Usage : `dotnet new ckdb -o CK-DB-MyProject`
+- Usage : `dotnet new ckdb -o MyProject`
 
 > Note: CK.DB. or CK-DB- or CK_DB_ is absorbed.
 

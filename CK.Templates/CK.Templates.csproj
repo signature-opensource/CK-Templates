@@ -3,6 +3,7 @@
   <PropertyGroup>
     <PackageType>Template</PackageType>
     <PackageId>CK.Templates</PackageId>
+    <PackageVersion>1.0</PackageVersion>
     <Title>CK Templates</Title>
     <Authors>Signature Code</Authors>
     <Description>Templates to use when creating a CK package.</Description>
@@ -18,8 +19,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="..\templates\**\*" Exclude="..\templates\**\bin\**;..\templates\**\obj\**" />
-    <Compile Remove="..\**\*" />
+    <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**;templates\**\.idea\**;templates\**\.vs\**"/>
+    <Compile Remove="**\*"/>
   </ItemGroup>
 
 </Project>
