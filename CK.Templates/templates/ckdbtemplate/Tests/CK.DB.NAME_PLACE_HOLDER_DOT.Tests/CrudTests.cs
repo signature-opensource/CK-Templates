@@ -1,10 +1,10 @@
 using CK.SqlServer;
 using NUnit.Framework;
 using CK.Core;
-using static CK.Testing.DBSetupTestHelper;
 using System.Diagnostics;
 using Dapper;
 using CK.SqlServer;
+using static CK.Testing.DBSetupTestHelper;
 
 namespace CK.DB.NAME_PLACE_HOLDER_DOT.Tests;
 
