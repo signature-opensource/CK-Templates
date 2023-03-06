@@ -61,3 +61,4 @@ And answer `y` to al the prompts to create the first commit.
 
 - Release first stable version to nuget.
 - Update appveyor badge.
+- CamelCase should start with a lowercase letter where needed (hard to do)
