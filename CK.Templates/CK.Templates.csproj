@@ -3,7 +3,6 @@
   <PropertyGroup>
     <PackageType>Template</PackageType>
     <PackageId>CK.Templates</PackageId>
-    <PackageVersion>1.0</PackageVersion>
     <Title>CK Templates</Title>
     <Authors>Signature Code</Authors>
     <Description>Templates to use when creating a CK package.</Description>
@@ -19,7 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**;templates\**\.idea\**;templates\**\.vs\**"/>
+    <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**;templates\**\.idea\**;templates\**\.vs\**;templates\**\Tests\**\Logs\**"/>
     <Compile Remove="**\*"/>
   </ItemGroup>
 
