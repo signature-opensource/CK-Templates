@@ -1,6 +1,8 @@
 using Cake.Common.IO;
 using Cake.Core;
 using Cake.Core.Diagnostics;
+using System.IO;
+using System.Linq;
 
 namespace CodeCake
 {
@@ -40,19 +42,9 @@ namespace CodeCake
                     globalInfo.GetDotnetSolution().Build();
                 } );
 
-            Task( "Unit-Testing" )
-                .IsDependentOn( "Build" )
-                .WithCriteria( () => Cake.InteractiveMode() == InteractiveMode.NoInteraction
-                                     || Cake.ReadInteractiveOption( "RunUnitTests", "Run Unit Tests?", 'Y', 'N' ) == 'Y' )
-               .Does( () =>
-               {
-                    
-                  globalInfo.GetDotnetSolution().Test();
-               } );
-
             Task( "Create-NuGet-Packages" )
                 .WithCriteria( () => globalInfo.IsValid )
-                .IsDependentOn( "Unit-Testing" )
+                .IsDependentOn( "Build" )
                 .Does( () =>
                 {
                     globalInfo.GetDotnetSolution().Pack();

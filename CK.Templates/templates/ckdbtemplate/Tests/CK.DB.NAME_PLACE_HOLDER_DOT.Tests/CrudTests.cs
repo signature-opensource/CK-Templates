@@ -1,36 +1,38 @@
-using CK.SqlServer;
-using NUnit.Framework;
 using CK.Core;
-using System.Diagnostics;
-using Dapper;
 using CK.SqlServer;
+using Dapper;
+using FluentAssertions;
+using NUnit.Framework;
+using System.Diagnostics;
 using static CK.Testing.DBSetupTestHelper;
 
-namespace CK.DB.NAME_PLACE_HOLDER_DOT.Tests;
-
-public class CrudTests
+namespace CK.DB.NAME_PLACE_HOLDER_DOT.Tests
 {
-    [Test]
-    public void Crud()
+    public class CrudTests
     {
-        var package = TestHelper.StObjMap.StObjs.Obtain<Package>();
-        Debug.Assert( package != null, nameof( package ) + " != null" );
-        using var context = new SqlStandardCallContext();
-        var actorId = 1;
+        [Test]
+        public void Crud()
+        {
+            var table = TestHelper.StObjMap.StObjs.Obtain<NAME_PLACE_HOLDER_CAMELCASETable>();
+            Debug.Assert( table != null );
+            using( var context = new SqlStandardCallContext() )
+            {
+                var actorId = 1;
 
-        context[package].Execute( "delete from CK.tNAME_PLACE_HOLDER_CAMELCASE" );
+                context[table].Execute( "delete from CK.tNAME_PLACE_HOLDER_CAMELCASE" );
 
-        var inputName = "Hello world!";
-        package.NAME_PLACE_HOLDER_CAMELCASETable.Create( context, actorId, inputName );
+                var inputName = "Hello world!";
+                table.Create( context, actorId, inputName );
 
-        var sql = @"
-select top 1 NAME_PLACE_HOLDER_CAMELCASEId
-from CK.tNAME_PLACE_HOLDER_CAMELCASE
-where NAME_PLACE_HOLDER_CAMELCASEName = @Name;
-";
+                var sql = "select top 1 NAME_PLACE_HOLDER_CAMELCASEId " +
+                          "from CK.tNAME_PLACE_HOLDER_CAMELCASE " +
+                          "where NAME_PLACE_HOLDER_CAMELCASEName = @Name;";
 
-        var id = context[package].QuerySingle<int>( sql, new { Name = inputName } );
+                var id = context[table].QuerySingle<int>( sql, new { Name = inputName } );
+                id.Should().BeGreaterThan( 0 );
 
-        package.NAME_PLACE_HOLDER_CAMELCASETable.Destroy( context, actorId, id );
+                table.Destroy( context, actorId, id );
+            }
+        }
     }
 }
