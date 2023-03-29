@@ -29,11 +29,18 @@ Create a new CK.DB solution:
 dotnet new ckdb
 ```
 
+Create a new CK.DB project:
+
+```powershell
+dotnet new pckdb
+```
+
 ## Available templates
 
-| Identity       | short | Description                                                                                           |
-|----------------|-------|-------------------------------------------------------------------------------------------------------|
-| CK.DB.Template | ckdb  | Create a solution that brings a skeleton with sql package and table, setup ready, with sql unit test. |
+| Identity               | short | Description                                                                                           |
+|------------------------|-------|-------------------------------------------------------------------------------------------------------|
+| CK.DB.Template         | ckdb  | Create a solution that brings a skeleton with sql package and table, setup ready, with sql unit test. |
+| Project.CK.DB.Template | pckdb | Create a project that brings a skeleton with sql package and table.                                   |
 
 ## Contribute
 
@@ -60,4 +67,5 @@ And answer `y` to the unique prompt to create the git repository (git init).
 ## TODO
 
 - CamelCase should start with a lowercase letter where needed (hard to do)
-- Add a template for project (not solution).
+- Add a template for test project.
+- Add maybe a template for item.
