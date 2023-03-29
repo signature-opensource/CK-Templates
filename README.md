@@ -55,7 +55,7 @@ In folder [`ckdbtemplate`](./templates/ckdbtemplate).
 
 > Note: CK.DB. or CK-DB- or CK_DB_ is absorbed.
 
-And answer `y` to al the prompts to create the first commit.
+And answer `y` to the unique prompt to create the git repository (git init).
 
 ## TODO
 
