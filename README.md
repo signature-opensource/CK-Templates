@@ -1,6 +1,6 @@
 ﻿# CK-Templates
 
-[![AppVeyor](https://ci.appveyor.com/api/projects/status/todo?svg=true)](https://ci.appveyor.com/project/Signature-OpenSource/ck-templates)
+[![AppVeyor](https://ci.appveyor.com/api/projects/status/github/signature-opensource/CK-Templates?svg=true)](https://ci.appveyor.com/project/Signature-OpenSource/ck-templates)
 [![Nuget](https://img.shields.io/nuget/vpre/CK.Templates.svg)](https://www.nuget.org/packages/CK.Templates/)
 [![Licence](https://img.shields.io/github/license/signature-opensource/CK-Templates.svg)](https://img.shields.io/github/license/signature-opensource/CK-Templates/blob/master/LICENSE)
 
@@ -59,6 +59,5 @@ And answer `y` to al the prompts to create the first commit.
 
 ## TODO
 
-- Release first stable version to nuget.
-- Update appveyor badge.
 - CamelCase should start with a lowercase letter where needed (hard to do)
+- Add a template for project (not solution).
