@@ -18,8 +18,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**;templates\**\.idea\**;templates\**\.vs\**;templates\**\Tests\**\Logs\**"/>
-    <Compile Remove="**\*"/>
+    <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**;templates\**\.idea\**;templates\**\.vs\**;templates\**\Tests\**\Logs\**" />
+    <Compile Remove="**\*" />
   </ItemGroup>
 
 </Project>
