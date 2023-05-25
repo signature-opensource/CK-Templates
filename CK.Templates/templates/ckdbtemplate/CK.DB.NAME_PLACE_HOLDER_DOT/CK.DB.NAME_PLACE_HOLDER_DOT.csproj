@@ -9,6 +9,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="**\*.sql;**\*.tql;**\*.y4" Exclude="bin\**;obj\**;CodeCakeBuilder\**;packages\**;@(EmbeddedResource)" />
+    <None Remove="Res\**\*.sql" />
+    <None Remove="Res\**\*.tql" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
