@@ -1,4 +1,5 @@
 using Cake.Common.IO;
+using Cake.Common.Tools.DotNet;
 using Cake.Core;
 using Cake.Core.Diagnostics;
 using System.IO;
@@ -39,6 +40,7 @@ namespace CodeCake
                 .IsDependentOn( "Clean" )
                 .Does( () =>
                 {
+                    Cake.DotNetExecute( "TemplateBuilder" );
                     globalInfo.GetDotnetSolution().Build();
                 } );
 
