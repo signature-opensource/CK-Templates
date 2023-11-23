@@ -11,7 +11,7 @@
     "language": "C#",
     "type": "project"
   },
-  "identity": "Project.CK.DB.Template",
+  "identity": "Project.CK.DB.Tests.Template",
   "name": "Project CK.DB Test Package",
   "shortName": "pckdbtest",
   "symbols": {
