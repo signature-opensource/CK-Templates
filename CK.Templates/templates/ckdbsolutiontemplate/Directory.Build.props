@@ -1,13 +1,4 @@
 <Project>
-  <PropertyGroup>
-    <CKDBVersion>2.0.0</CKDBVersion>
-  </PropertyGroup>
-  <!-- Exclude CKSetup-WorkingDir folder. -->
-  <ItemGroup>
-    <Compile Remove="CKSetup-WorkingDir\**" />
-    <EmbeddedResource Remove="CKSetup-WorkingDir\**" />
-    <None Remove="CKSetup-WorkingDir\**" />
-  </ItemGroup>
   <!--<BasicDefinitions>: provides simple and useful definitions.-->
   <PropertyGroup>
     <!-- See https://www.meziantou.net/csharp-compiler-strict-mode.htm -->
@@ -21,6 +12,8 @@
     <ContinuousIntegrationBuild Condition=" '$(CakeBuild)' == 'true' ">true</ContinuousIntegrationBuild>
     <!-- InformationalVersion is either the Zero version or provided by the CodeCakeBuilder when in CI build). -->
     <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+    <!-- Includes the .pdb in package. -->
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
     <SourceRoot Include="$(SolutionDir)" />
@@ -28,7 +21,7 @@
   <!--</BasicDefinitions>-->
   <!--<StandardProperties>-->
   <PropertyGroup>
-    <RepositoryUrl>https://github.com/Invenietis/CK-DB-NAME_PLACE_HOLDER_DASH</RepositoryUrl>
+    <RepositoryUrl></RepositoryUrl>
     <ProductName>CK</ProductName>
     <Company>Signature Code</Company>
     <Authors>Signature Code</Authors>
@@ -59,10 +52,9 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   <!--</GenerateDocumentation>-->
-
   <!--<Analyzers>: This analyzer provides very welcome guidelines about async and threading issues.-->
   <ItemGroup Condition=" '$(MSBuildProjectName)' != 'CodeCakeBuilder' ">
-    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.3.48" PrivateAssets="All" IncludeAssets="runtime;build;native;contentfiles;analyzers" />
+    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.7.30" PrivateAssets="All" IncludeAssets="runtime;build;native;contentfiles;analyzers" />
   </ItemGroup>
   <!--</Analyzers>-->
   <!--<ReproducibleBuilds>-->
@@ -73,7 +65,6 @@
   <!--Guaranty that the build is isolated. https://github.com/dotnet/reproducible-builds#dotnetreproduciblebuildsisolated-documentation-and-nuget-package-->
   <Sdk Name="DotNet.ReproducibleBuilds.Isolated" Version="1.1.1" />
   <!--</ReproducibleBuilds>-->
-
   <!--<_CopyXmlDocFiles>:
     It's a mess... See  https://github.com/dotnet/sdk/issues/1458#issuecomment-695119194
     This solution works and filters out System and Microsoft packages.

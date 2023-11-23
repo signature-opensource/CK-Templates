@@ -1,15 +1,15 @@
 using Cake.Common.IO;
+using Cake.Common.Tools.DotNet;
 using Cake.Core;
 using Cake.Core.Diagnostics;
+using System.IO;
+using System.Linq;
 
 namespace CodeCake
 {
-
     /// <summary>
-    /// Sample build "script".
-    /// Build scripts can be decorated with AddPath attributes that inject existing paths into the PATH environment variable. 
+    /// Standard build "script".
     /// </summary>
-
     public partial class Build : CodeCakeHost
     {
         public Build()
@@ -43,19 +43,9 @@ namespace CodeCake
                     globalInfo.GetDotnetSolution().Build();
                 } );
 
-            Task( "Unit-Testing" )
-                .IsDependentOn( "Build" )
-                .WithCriteria( () => Cake.InteractiveMode() == InteractiveMode.NoInteraction
-                                     || Cake.ReadInteractiveOption( "RunUnitTests", "Run Unit Tests?", 'Y', 'N' ) == 'Y' )
-               .Does( () =>
-               {
-                    
-                  globalInfo.GetDotnetSolution().Test();
-               } );
-
             Task( "Create-NuGet-Packages" )
                 .WithCriteria( () => globalInfo.IsValid )
-                .IsDependentOn( "Unit-Testing" )
+                .IsDependentOn( "Build" )
                 .Does( () =>
                 {
                     globalInfo.GetDotnetSolution().Pack();
