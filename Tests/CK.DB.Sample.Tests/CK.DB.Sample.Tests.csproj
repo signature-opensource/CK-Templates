@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Description>This package contains tests for CK.DB.Sample (uses CK.DB.Tests.NUnit).</Description>
-    <IsPackable>True</IsPackable>
+    <IsPackable>false</IsPackable>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
