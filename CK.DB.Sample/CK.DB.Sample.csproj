@@ -1,20 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Description>This package implements Sample.</Description>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="CK.SqlServer.Setup.Model" Version="24.3.0" />
+    <PackageReference Include="CK.SqlServer.Setup.Model" Version="24.3.1--0004-develop" />
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Include="**\*.sql;**\*.tql;**\*.y4" Exclude="bin\**;obj\**;CodeCakeBuilder\**;packages\**;@(EmbeddedResource)" />
     <None Remove="Res\**\*.sql" />
     <None Remove="Res\**\*.tql" />
   </ItemGroup>
-
 </Project>
