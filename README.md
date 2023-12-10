@@ -1,4 +1,4 @@
-﻿# CK-Templates
+# CK-Templates
 
 [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/signature-opensource/CK-Templates?svg=true)](https://ci.appveyor.com/project/Signature-OpenSource/ck-templates)
 [![Nuget](https://img.shields.io/nuget/vpre/CK.Templates.svg)](https://www.nuget.org/packages/CK.Templates/)
@@ -35,12 +35,19 @@ Create a new CK.DB project:
 dotnet new pckdb
 ```
 
+Create a new CK.DB test project:
+
+```powershell
+dotnet new pckdbtest
+```
+
 ## Available templates
 
-| Identity               | short | Description                                                                                           |
-|------------------------|-------|-------------------------------------------------------------------------------------------------------|
-| CK.DB.Template         | ckdb  | Create a solution that brings a skeleton with sql package and table, setup ready, with sql unit test. |
-| Project.CK.DB.Template | pckdb | Create a project that brings a skeleton with sql package and table.                                   |
+| Identity | short | Description |
+|----------|-------|-------------|
+| CK.DB.Template | ckdb | Create a solution that brings a skeleton with sql package and table, setup ready, with sql unit test. |
+| Project.CK.DB.Template | pckdb | Create a project that brings a skeleton with sql package and table. |
+| Project.CK.DB.Tests.Template | pckdbtest | Create a test project for sql package. |
 
 ## Contribute
 
@@ -50,11 +57,11 @@ To install locally, first pack [CK.Templates](./CK.Templates/CK.Templates.csproj
 
 Remove with `dotnet new uninstall CK.Templates`.
 
-Add new templates in [templates](./templates) folder.
+Add new templates in [templates](./CK.Templates/templates) folder.
 
 ## CK.DB.Template
 
-In folder [`ckdbtemplate`](./templates/ckdbtemplate).
+In folder [`ckdbsolutiontemplate`](./CK.Templates/templates/ckdbsolutiontemplate).
 
 - Usage : `dotnet new ckdb`
 - Usage : `dotnet new ckdb -o CK-DB-MyProject`
@@ -64,8 +71,13 @@ In folder [`ckdbtemplate`](./templates/ckdbtemplate).
 
 And answer `y` to the unique prompt to create the git repository (git init).
 
+## CK.DB.Tests.Template
+
+In folder [`ckdbprojecttesttemplate`](./CK.Templates/templates/ckdbprojecttesttemplate).
+
+> Note: Don't forget to refer the project to test.
+
 ## TODO
 
 - CamelCase should start with a lowercase letter where needed (hard to do)
-- Add a template for test project.
 - Add maybe a template for item.

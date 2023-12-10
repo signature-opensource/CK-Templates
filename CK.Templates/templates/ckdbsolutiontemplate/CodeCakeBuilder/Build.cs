@@ -40,7 +40,6 @@ namespace CodeCake
                 .IsDependentOn( "Clean" )
                 .Does( () =>
                 {
-                    Cake.DotNetRun( "TemplateBuilder" );
                     globalInfo.GetDotnetSolution().Build();
                 } );
 

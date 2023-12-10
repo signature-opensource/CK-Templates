@@ -1,0 +1,87 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Signature Code",
+  "classifications": [
+    "Library",
+    "SqlServer"
+  ],
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "identity": "Project.CK.DB.Template",
+  "name": "Project CK.DB Package",
+  "shortName": "pckdb",
+  "symbols": {
+    "withDots": {
+      "type": "generated",
+      "generator": "regex",
+      "replaces": "NAME_PLACE_HOLDER_DOT",
+      "fileRename": "NAME_PLACE_HOLDER_DOT",
+      "parameters": {
+        "source": "name",
+        "steps": [
+          {
+            "regex": "(CK([.]|[-]|_)DB([.]|[-]|_))?",
+            "replacement": ""
+          },
+          {
+            "regex": "(-|_|[.])",
+            "replacement": "."
+          }
+        ]
+      }
+    },
+    "withDashes": {
+      "type": "generated",
+      "generator": "regex",
+      "replaces": "NAME_PLACE_HOLDER_DASH",
+      "fileRename": "NAME_PLACE_HOLDER_DASH",
+      "parameters": {
+        "source": "name",
+        "steps": [
+          {
+            "regex": "(CK([.]|[-]|_)DB([.]|[-]|_))?",
+            "replacement": ""
+          },
+          {
+            "regex": "(-|_|[.])",
+            "replacement": "-"
+          }
+        ]
+      }
+    },
+    "withCamelCase": {
+      "type": "generated",
+      "generator": "regex",
+      "replaces": "NAME_PLACE_HOLDER_CAMELCASE",
+      "fileRename": "NAME_PLACE_HOLDER_CAMELCASE",
+      "parameters": {
+        "source": "name",
+        "steps": [
+          {
+            "regex": "(CK([.]|[-]|_)DB([.]|[-]|_))?",
+            "replacement": ""
+          },
+          {
+            "regex": "(-|_|[.])",
+            "replacement": ""
+          }
+        ]
+      }
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [
+            "**/.git/**",
+            "**/.vs/**",
+            "**/.idea/**"
+          ]
+        }
+      ]
+    }
+  ]
+}
