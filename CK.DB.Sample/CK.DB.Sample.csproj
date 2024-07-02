@@ -3,7 +3,6 @@
     <TargetFramework>net6.0</TargetFramework>
     <Description>This package implements Sample.</Description>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-    <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="CK.SqlServer.Setup.Model" Version="25.0.1--0058-develop" />
