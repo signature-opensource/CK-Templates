@@ -1,8 +1,9 @@
-﻿<RepositoryInfo>
-  <SimpleGitVersion>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RepositoryInfo>
+  <SimpleGitVersion StartingVersion="4.0.0-alpha">
     <Branches>
-      <Branch Name="develop" CIVersionMode="LastReleaseBased" VersionName="develop"/>
-      <Branch Name="master" CIVersionMode="LastReleaseBased" VersionName="master"/>
+      <Branch Name="develop" CIVersionMode="LastReleaseBased" VersionName="develop" />
+      <Branch Name="master" CIVersionMode="LastReleaseBased" VersionName="master" />
     </Branches>
   </SimpleGitVersion>
 </RepositoryInfo>
