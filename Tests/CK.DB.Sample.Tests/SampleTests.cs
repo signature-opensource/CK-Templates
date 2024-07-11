@@ -1,5 +1,6 @@
 using CK.Core;
 using CK.SqlServer;
+using CK.Testing;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
@@ -13,30 +14,35 @@ namespace CK.DB.Sample.Tests
     [TestFixture]
     public class SampleTests
     {
-        static SampleTable SampleTable => TestHelper.CreateAutomaticServices().GetRequiredService<SampleTable>();
 
         [Test]
         public async Task can_create_Sample_Async()
         {
-            using var ctx = new SqlStandardCallContext();
+            var sampleTable = SharedEngine.AutomaticServices.GetRequiredService<SampleTable>();
 
-            string sampleName = Guid.NewGuid().ToString();
-            int sampleId = await SampleTable.CreateSampleAsync( ctx, 1, sampleName );
+            using( var ctx = new SqlStandardCallContext( TestHelper.Monitor ) )
+            {
+                string sampleName = Guid.NewGuid().ToString();
+                int sampleId = await sampleTable.CreateSampleAsync( ctx, 1, sampleName );
 
-            SampleTable.Database.ReadFirstRow( "select SampleName from CK.tSample where SampleId = @0;", sampleId )
-                .Should().NotBeNull()
-                .And.Subject.Single().Should().Be( sampleName );
+                sampleTable.Database.ReadFirstRow( "select SampleName from CK.tSample where SampleId = @0;", sampleId )
+                    .Should().NotBeNull()
+                    .And.Subject.Single().Should().Be( sampleName );
+            }
         }
 
         [Test]
         public async Task can_destroy_Sample_Async()
         {
-            using var ctx = new SqlStandardCallContext();
+            var sampleTable = SharedEngine.AutomaticServices.GetRequiredService<SampleTable>();
 
-            int sampleId = await SampleTable.CreateSampleAsync( ctx, 1, Guid.NewGuid().ToString() );
+            using( var ctx = new SqlStandardCallContext( TestHelper.Monitor ) )
+            {
+                int sampleId = await sampleTable.CreateSampleAsync( ctx, 1, Guid.NewGuid().ToString() );
 
-            await SampleTable.Invoking( table => table.DestroySampleAsync( ctx, 1, sampleId ) )
-                .Should().NotThrowAsync();
+                await sampleTable.Invoking( table => table.DestroySampleAsync( ctx, 1, sampleId ) )
+                    .Should().NotThrowAsync();
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿{
+{
   "$schema": "http://json.schemastore.org/template",
   "author": "Signature Code",
   "classifications": [
@@ -11,9 +11,9 @@
     "language": "C#",
     "type": "solution"
   },
-  "identity": "CK.DB.Template",
-  "name": "CK.DB Package",
-  "shortName": "ckdb",
+  "identity": "CK.DB.Template.Solution",
+  "name": "CK.DB Solution",
+  "shortName": "ckdb-solution",
   "symbols": {
     "withDots": {
       "type": "generated",

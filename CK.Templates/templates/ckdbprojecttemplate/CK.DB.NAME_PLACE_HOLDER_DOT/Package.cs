@@ -1,4 +1,5 @@
 using CK.Core;
+using System.Diagnostics.CodeAnalysis;
 
 namespace CK.DB.NAME_PLACE_HOLDER_DOT
 {
@@ -8,7 +9,7 @@ namespace CK.DB.NAME_PLACE_HOLDER_DOT
     {
         void StObjConstruct() { }
 
-        [InjectObject]
+        [InjectObject, AllowNull]
         public NAME_PLACE_HOLDER_CAMELCASETable NAME_PLACE_HOLDER_CAMELCASETable { get; protected set; }
     }
 }

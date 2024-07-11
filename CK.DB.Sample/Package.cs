@@ -1,4 +1,5 @@
 using CK.Core;
+using System.Diagnostics.CodeAnalysis;
 
 namespace CK.DB.Sample
 {
@@ -8,7 +9,7 @@ namespace CK.DB.Sample
     {
         void StObjConstruct() { }
 
-        [InjectObject]
+        [InjectObject, AllowNull]
         public SampleTable SampleTable { get; protected set; }
     }
 }
