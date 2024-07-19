@@ -60,7 +60,6 @@ namespace TemplateBuilder
 
             Directory.CreateDirectory( solutionOut.Combine( "Tests" ) );
             CopyProjectEngine.Execute( solutionFolder.Combine( "Tests", "CK.DB.Sample.Tests" ), solutionOut.Combine( "Tests" ), letProjectReference: true );
-            CopyFile( solutionFolder.Combine( "Tests", "TestHelper.config" ), solutionOut.Combine( "Tests" ) );
 
             CopyProjectEngine.Execute( solutionFolder.Combine( "CodeCakeBuilder" ), solutionOut );
             CopyAndModifyFile(
