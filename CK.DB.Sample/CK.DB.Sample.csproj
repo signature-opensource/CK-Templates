@@ -4,7 +4,7 @@
     <Description>Very simple sample.</Description>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CK.SqlServer.Setup.Model" Version="0.0.0--04zijuk-develop" />
+    <PackageReference Include="CK.SqlServer.Setup.Model" Version="0.0.0--04zk4si-develop" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="**\*.sql;**\*.tql" />
