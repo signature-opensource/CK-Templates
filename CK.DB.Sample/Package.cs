@@ -1,14 +1,14 @@
 using CK.Core;
+using System.Diagnostics.CodeAnalysis;
 
-namespace CK.DB.Sample
+namespace CK.DB.Sample;
+
+[SqlPackage( Schema = "CK", ResourcePath = "Res" )]
+[Versions( "1.0.0" )]
+public abstract class Package : SqlPackage
 {
-    [SqlPackage( Schema = "CK", ResourcePath = "Res" )]
-    [Versions( "1.0.0" )]
-    public abstract class Package : SqlPackage
-    {
-        void StObjConstruct() { }
+    void StObjConstruct() { }
 
-        [InjectObject]
-        public SampleTable SampleTable { get; protected set; }
-    }
+    [InjectObject, AllowNull]
+    public SampleTable SampleTable { get; protected set; }
 }

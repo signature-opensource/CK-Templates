@@ -25,9 +25,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CK.DB.Sample.Tests", "Tests\CK.DB.Sample.Tests\CK.DB.Sample.Tests.csproj", "{5E15E3DB-25AA-4649-BDA6-F88308E7236B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B4842362-5165-4499-9D4C-8F5DD42DCA84}"
-	ProjectSection(SolutionItems) = preProject
-		CK.Templates\templates\ckdbsolutiontemplate\Tests\TestHelper.config = CK.Templates\templates\ckdbsolutiontemplate\Tests\TestHelper.config
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

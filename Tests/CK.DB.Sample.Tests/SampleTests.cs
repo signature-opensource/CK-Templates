@@ -1,41 +1,46 @@
 using CK.Core;
 using CK.SqlServer;
+using CK.Testing;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using static CK.Testing.DBSetupTestHelper;
+using static CK.Testing.MonitorTestHelper;
 
-namespace CK.DB.Sample.Tests
+namespace CK.DB.Sample.Tests;
+
+[TestFixture]
+public class SampleTests
 {
-    [TestFixture]
-    public class SampleTests
+
+    [Test]
+    public async Task can_create_Sample_Async()
     {
-        static SampleTable SampleTable => TestHelper.CreateAutomaticServices().GetRequiredService<SampleTable>();
+        var sampleTable = SharedEngine.AutomaticServices.GetRequiredService<SampleTable>();
 
-        [Test]
-        public async Task can_create_Sample_Async()
+        using( var ctx = new SqlStandardCallContext( TestHelper.Monitor ) )
         {
-            using var ctx = new SqlStandardCallContext();
-
             string sampleName = Guid.NewGuid().ToString();
-            int sampleId = await SampleTable.CreateSampleAsync( ctx, 1, sampleName );
+            int sampleId = await sampleTable.CreateSampleAsync( ctx, 1, sampleName );
 
-            SampleTable.Database.ReadFirstRow( "select SampleName from CK.tSample where SampleId = @0;", sampleId )
+            sampleTable.Database.ReadFirstRow( "select SampleName from CK.tSample where SampleId = @0;", sampleId )
                 .Should().NotBeNull()
                 .And.Subject.Single().Should().Be( sampleName );
         }
+    }
 
-        [Test]
-        public async Task can_destroy_Sample_Async()
+    [Test]
+    public async Task can_destroy_Sample_Async()
+    {
+        var sampleTable = SharedEngine.AutomaticServices.GetRequiredService<SampleTable>();
+
+        using( var ctx = new SqlStandardCallContext( TestHelper.Monitor ) )
         {
-            using var ctx = new SqlStandardCallContext();
+            int sampleId = await sampleTable.CreateSampleAsync( ctx, 1, Guid.NewGuid().ToString() );
 
-            int sampleId = await SampleTable.CreateSampleAsync( ctx, 1, Guid.NewGuid().ToString() );
-
-            await SampleTable.Invoking( table => table.DestroySampleAsync( ctx, 1, sampleId ) )
+            await sampleTable.Invoking( table => table.DestroySampleAsync( ctx, 1, sampleId ) )
                 .Should().NotThrowAsync();
         }
     }

@@ -1,19 +1,18 @@
 using System.IO;
 
-namespace TemplateBuilder
+namespace TemplateBuilder;
+
+static class StringExtensions
 {
-    static class StringExtensions
+    /// <summary>
+    /// Use <see cref="Path.Combine(string[])"/> to the current string.
+    /// </summary>
+    internal static string Combine( this string value, params string[] paths )
     {
-        /// <summary>
-        /// Use <see cref="Path.Combine(string[])"/> to the current string.
-        /// </summary>
-        internal static string Combine( this string value, params string[] paths )
+        foreach( var path in paths )
         {
-            foreach( var path in paths )
-            {
-                value = Path.Combine( value, path );
-            }
-            return value;
+            value = Path.Combine( value, path );
         }
+        return value;
     }
 }

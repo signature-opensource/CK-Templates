@@ -9,9 +9,9 @@
     "language": "C#",
     "type": "project"
   },
-  "identity": "Project.CK.DB.Template",
-  "name": "Project CK.DB Package",
-  "shortName": "pckdb",
+  "identity": "CK.DB.Template.Project",
+  "name": "CK.DB Project",
+  "shortName": "ckdb-project",
   "symbols": {
     "withDots": {
       "type": "generated",
