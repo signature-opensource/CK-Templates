@@ -1,7 +1,7 @@
 using CK.Core;
 using CK.SqlServer;
 using CK.Testing;
-using FluentAssertions;
+using Shouldly;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 using System;
@@ -14,7 +14,6 @@ namespace CK.DB.Sample.Tests;
 [TestFixture]
 public class SampleTests
 {
-
     [Test]
     public async Task can_create_Sample_Async()
     {
@@ -26,8 +25,8 @@ public class SampleTests
             int sampleId = await sampleTable.CreateSampleAsync( ctx, 1, sampleName );
 
             sampleTable.Database.ReadFirstRow( "select SampleName from CK.tSample where SampleId = @0;", sampleId )
-                .Should().NotBeNull()
-                .And.Subject.Single().Should().Be( sampleName );
+                .ShouldNotBeNull()
+                .ShouldHaveSingleItem().ShouldBe( sampleName );
         }
     }
 
@@ -40,8 +39,8 @@ public class SampleTests
         {
             int sampleId = await sampleTable.CreateSampleAsync( ctx, 1, Guid.NewGuid().ToString() );
 
-            await sampleTable.Invoking( table => table.DestroySampleAsync( ctx, 1, sampleId ) )
-                .Should().NotThrowAsync();
+            await Util.Awaitable( () => sampleTable.DestroySampleAsync( ctx, 1, sampleId ) )
+                .ShouldNotThrowAsync();
         }
     }
 }
