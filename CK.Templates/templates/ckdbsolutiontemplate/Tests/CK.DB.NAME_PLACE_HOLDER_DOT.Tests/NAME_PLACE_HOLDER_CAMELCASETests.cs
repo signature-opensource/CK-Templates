@@ -1,7 +1,7 @@
 using CK.Core;
 using CK.SqlServer;
 using CK.Testing;
-using FluentAssertions;
+using Shouldly;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 using System;
@@ -26,8 +26,8 @@ namespace CK.DB.NAME_PLACE_HOLDER_DOT.Tests
                 int NAME_PLACE_HOLDER_CAMELCASEId = await NAME_PLACE_HOLDER_CAMELCASETable.CreateNAME_PLACE_HOLDER_CAMELCASEAsync( ctx, 1, NAME_PLACE_HOLDER_CAMELCASEName );
 
                 NAME_PLACE_HOLDER_CAMELCASETable.Database.ReadFirstRow( "select NAME_PLACE_HOLDER_CAMELCASEName from CK.tNAME_PLACE_HOLDER_CAMELCASE where NAME_PLACE_HOLDER_CAMELCASEId = @0;", NAME_PLACE_HOLDER_CAMELCASEId )
-                    .Should().NotBeNull()
-                    .And.Subject.Single().Should().Be( NAME_PLACE_HOLDER_CAMELCASEName );
+                    .ShouldNotBeNull()
+                    .And.Subject.Single().ShouldBe( NAME_PLACE_HOLDER_CAMELCASEName );
             }
         }
 
@@ -41,7 +41,7 @@ namespace CK.DB.NAME_PLACE_HOLDER_DOT.Tests
                 int NAME_PLACE_HOLDER_CAMELCASEId = await NAME_PLACE_HOLDER_CAMELCASETable.CreateNAME_PLACE_HOLDER_CAMELCASEAsync( ctx, 1, Guid.NewGuid().ToString() );
 
                 await NAME_PLACE_HOLDER_CAMELCASETable.Invoking( table => table.DestroyNAME_PLACE_HOLDER_CAMELCASEAsync( ctx, 1, NAME_PLACE_HOLDER_CAMELCASEId ) )
-                    .Should().NotThrowAsync();
+                    .ShouldNotThrowAsync();
             }
         }
     }
