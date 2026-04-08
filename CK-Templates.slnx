@@ -1,0 +1,17 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="appveyor.yml" />
+    <File Path="Directory.Build.props" />
+    <File Path="LICENSE" />
+    <File Path="NuGet.config" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="Tests/CK.DB.Sample.Tests/CK.DB.Sample.Tests.csproj" />
+  </Folder>
+  <Project Path="CK.DB.Sample/CK.DB.Sample.csproj" />
+  <Project Path="CK.Templates/CK.Templates.csproj" />
+  <Project Path="TemplateBuilder/TemplateBuilder.csproj" />
+</Solution>
