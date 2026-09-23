@@ -6,7 +6,7 @@
     <Authors>Signature Code</Authors>
     <Description>Templates to use when creating a CK package.</Description>
     <PackageTags>dotnet-new;templates;signature-code</PackageTags>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <IncludeContentInPack>true</IncludeContentInPack>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <ContentTargetFolders>content</ContentTargetFolders>
