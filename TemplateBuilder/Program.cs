@@ -4,17 +4,40 @@ using System.Linq;
 
 namespace TemplateBuilder;
 
+/// <summary>
+/// Generates the "CK.Templates/templates" working folder (ignored by git) from the regular projects
+/// of this solution. It is run by the build of this project (see TemplateBuilder.csproj): the pack
+/// of CK.Templates then packages the generated templates.
+/// </summary>
 class Program
 {
-    static void Main( string[] args )
+    static int Main( string[] args )
     {
-        string solutionFolder = FindSourceDirectory();
+        try
+        {
+            string solutionFolder = args.Length > 0 ? Path.GetFullPath( args[0] ) : FindSolutionFolder();
+            Generate( solutionFolder );
+            return 0;
+        }
+        catch( Exception ex )
+        {
+            Console.Error.WriteLine( $"TemplateBuilder failed: {ex}" );
+            return 1;
+        }
+    }
+
+    static void Generate( string solutionFolder )
+    {
         string outPath = solutionFolder.Combine( "CK.Templates", "templates" );
+        if( Directory.Exists( outPath ) )
+        {
+            Directory.Delete( outPath, recursive: true );
+        }
 
         #region CK.DB package copy
 
         string cKDBPkgOut = outPath.Combine( "ckdbprojecttemplate" );
-        CleanDirectory( cKDBPkgOut );
+        Directory.CreateDirectory( cKDBPkgOut );
         CopyProjectEngine.Execute( solutionFolder.Combine( "CK.DB.Sample" ), cKDBPkgOut );
 
         #endregion
@@ -22,7 +45,7 @@ class Program
         #region CK.DB test package copy
 
         string cKDBTestPkgOut = outPath.Combine( "ckdbprojecttesttemplate" );
-        CleanDirectory( cKDBTestPkgOut );
+        Directory.CreateDirectory( cKDBTestPkgOut );
         CopyProjectEngine.Execute( solutionFolder.Combine( "Tests", "CK.DB.Sample.Tests" ), cKDBTestPkgOut );
 
         #endregion
@@ -30,7 +53,7 @@ class Program
         #region  Solution copy
 
         string solutionOut = outPath.Combine( "ckdbsolutiontemplate" );
-        CleanDirectory( solutionOut );
+        Directory.CreateDirectory( solutionOut );
 
         Directory.CreateDirectory( solutionOut.Combine( "Common" ) );
         foreach( var file in Directory.GetFiles( solutionFolder.Combine( "Common" ) ) )
@@ -39,17 +62,15 @@ class Program
         }
 
         CopyFile( solutionFolder.Combine( ".editorconfig" ), solutionOut );
-        CopyFile( solutionFolder.Combine( ".gitignore" ), solutionOut );
+        // The generated templates folder is specific to this repository.
         CopyAndModifyFile(
-            solutionFolder.Combine( "appveyor.yml" ),
+            solutionFolder.Combine( ".gitignore" ),
             solutionOut,
-            content => content.Replace( "CK-Sample\\CK-Templates", "CK-Database-Projects\\CK-DB-NAME_PLACE_HOLDER_DASH" ) );
-        CopyAndModifyFile(
-            solutionFolder.Combine( "Directory.Build.props" ),
-            solutionOut,
-            content => content.Replace( "https://github.com/signature-opensource/CK-Templates", string.Empty ) );
-        CopyFile( solutionFolder.Combine( "NuGet.config" ), solutionOut );
-        CopyFile( solutionFolder.Combine( "RepositoryInfo.xml" ), solutionOut );
+            content => string.Join( '\n', content.Split( '\n' ).Where( line => !line.Contains( "CK.Templates/templates/" ) ) ) );
+        CopyFile( solutionFolder.Combine( "Directory.Build.props" ), solutionOut );
+        CopyFile( solutionFolder.Combine( "Directory.Build.targets" ), solutionOut );
+        CopyFile( solutionFolder.Combine( "global.json" ), solutionOut );
+        CopyFile( solutionFolder.Combine( "nuget.config" ), solutionOut );
 
         foreach( var file in Directory.GetFiles( solutionFolder.Combine( "TemplateBuilder", "SolutionRessources" ) ) )
         {
@@ -61,45 +82,41 @@ class Program
         Directory.CreateDirectory( solutionOut.Combine( "Tests" ) );
         CopyProjectEngine.Execute( solutionFolder.Combine( "Tests", "CK.DB.Sample.Tests" ), solutionOut.Combine( "Tests" ), letProjectReference: true );
 
-        CopyProjectEngine.Execute( solutionFolder.Combine( "CodeCakeBuilder" ), solutionOut );
-        CopyAndModifyFile(
-            solutionFolder.Combine( "CodeCakeBuilder", "Build.cs" ),
-            solutionOut.Combine( "CodeCakeBuilder" ),
-            content => string.Join( '\n', content.Split( '\n' ).Where( line => !line.Contains( "Cake.DotNetRun( \"TemplateBuilder\" );" ) ) ) );
-
         #endregion
+
+        CopyTemplateConfigurations( solutionFolder.Combine( "TemplateBuilder", "Templates" ), outPath );
     }
 
     /// <summary>
-    /// Find the solution directory of the running application.
+    /// Copies the hand-written "&lt;name&gt;.&lt;file&gt;" files (like "ckdbsolutiontemplate.template.json")
+    /// to "&lt;name&gt;/.template.config/&lt;file&gt;" in the output folder.
     /// </summary>
-    static string FindSourceDirectory()
+    static void CopyTemplateConfigurations( string templatesFolder, string outPath )
+    {
+        foreach( var file in Directory.GetFiles( templatesFolder ) )
+        {
+            string fileName = Path.GetFileName( file );
+            int idx = fileName.IndexOf( '.' );
+            if( idx <= 0 ) throw new Exception( $"Invalid file name '{file}': expected '<template name>.<file name>'." );
+            string templateFolder = outPath.Combine( fileName.Substring( 0, idx ) );
+            if( !Directory.Exists( templateFolder ) ) throw new Exception( $"File '{file}' doesn't match any generated template." );
+            string configFolder = templateFolder.Combine( ".template.config" );
+            Directory.CreateDirectory( configFolder );
+            File.Copy( file, configFolder.Combine( fileName.Substring( idx + 1 ) ) );
+        }
+    }
+
+    /// <summary>
+    /// Finds the solution folder by looking for "CK-Templates.slnx" from the current directory.
+    /// </summary>
+    static string FindSolutionFolder()
     {
         string dir = Directory.GetCurrentDirectory();
-        while( !File.Exists( dir.Combine( "CK-Templates.sln" ) ) )
+        while( !File.Exists( dir.Combine( "CK-Templates.slnx" ) ) )
         {
-            dir = Path.GetDirectoryName( dir ) ?? throw new Exception( "Cannot find solution root dierctory." );
+            dir = Path.GetDirectoryName( dir ) ?? throw new Exception( "Cannot find the solution folder (CK-Templates.slnx)." );
         }
         return dir;
-    }
-
-    /// <summary>
-    /// Clean the content of the sepcified directory, except the sub directory ".template.config".
-    /// </summary>
-    /// <param name="directory">The directory to clean.</param>
-    static void CleanDirectory( string directory )
-    {
-        foreach( string file in Directory.GetFiles( directory ) )
-        {
-            File.Delete( file );
-        }
-        foreach( string subDirectory in Directory.GetDirectories( directory ) )
-        {
-            if( Path.GetFileName( subDirectory ) != ".template.config" )
-            {
-                Directory.Delete( subDirectory, true );
-            }
-        }
     }
 
     /// <summary>

@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Build.targets" />
+    <File Path="global.json" />
+    <File Path="nuget.config" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="Tests/CK.DB.NAME_PLACE_HOLDER_DOT.Tests/CK.DB.NAME_PLACE_HOLDER_DOT.Tests.csproj" />
+  </Folder>
+  <Project Path="CK.DB.NAME_PLACE_HOLDER_DOT/CK.DB.NAME_PLACE_HOLDER_DOT.csproj" />
+</Solution>

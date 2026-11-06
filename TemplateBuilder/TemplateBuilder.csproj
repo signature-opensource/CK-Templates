@@ -4,9 +4,16 @@
     <TargetFramework>net10.0</TargetFramework>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
-  
+
   <ItemGroup>
     <None Include="SolutionRessources\**\*" />
+    <None Include="Templates\**\*" />
   </ItemGroup>
-  
+
+  <!-- Generates the CK.Templates/templates working folder (ignored by git) once built:
+       CK.Templates references this project so that its pack contains the generated templates. -->
+  <Target Name="GenerateTemplates" AfterTargets="Build">
+    <Exec Command="dotnet &quot;$(TargetPath)&quot; &quot;$(MSBuildThisFileDirectory)..&quot;" />
+  </Target>
+
 </Project>

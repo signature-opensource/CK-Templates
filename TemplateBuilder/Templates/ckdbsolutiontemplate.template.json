@@ -86,7 +86,7 @@
         }
       ],
       "continueOnError": false,
-      "description ": "Run git init."
+      "description": "Run git init."
     }
   ],
   "sources": [
